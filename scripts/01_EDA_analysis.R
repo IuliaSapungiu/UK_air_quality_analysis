@@ -8,9 +8,9 @@
 # 1. SETUP: Load Required Packages
 # ------------------------------------------------------------------------------
 
-#install.packages(c("tidyverse", "lubridate", "ggplot2", "patchwork"))
+install.packages(c("tidyverse", "lubridate", "ggplot2", "patchwork"))
 
-library(tidyverse)    # Data manipulation and visualization
+library(tidyverse)    # Data manipulation and visualisation
 library(lubridate)    # Date handling
 library(ggplot2)      # Plotting (also loaded via tidyverse, but explicit here)
 library(patchwork)    # Combining multiple plots
@@ -22,7 +22,7 @@ theme_set(theme_minimal(base_size = 12))
 dir.create("processed_data", showWarnings = FALSE)
 
 # Option to save plots to files (set to TRUE to speed up execution)
-save_plots_to_file <- TRUE  # Change to FALSE to display in RStudio
+save_plots_to_file <- TRUE  # Change to FALSE if you only want to see plots in RStudio
 
 # Create output directory for plots if saving
 if (save_plots_to_file) {
@@ -189,7 +189,7 @@ for (poll in key_pollutants) {
   if (save_plots_to_file) {
     # Save to file (much faster than displaying)
     ggsave(
-      filename = paste0("plots/daily_timeseries_", poll, ".png"),
+      filename = paste("plots/daily_timeseries_", poll, ".png"),
       plot = p,
       width = 12,
       height = 10,
@@ -246,9 +246,6 @@ for (poll in key_pollutants) {
       legend.position = "bottom"
     )
   
-  # Display in RStudio 
-  print(p)
-  
   # Also save to file
   if (save_plots_to_file) {
     ggsave(
@@ -259,6 +256,10 @@ for (poll in key_pollutants) {
       dpi = 300
     )
     cat("  Saved: plots/monthly_trend_", poll, ".png\n", sep = "")
+  } else {
+    # Display in RStudio (slower)
+    print(p)
+    cat("  Plot for", poll, "displayed.\n")
   }
   
   cat("  Monthly plot for", poll, "completed.\n")
@@ -317,21 +318,22 @@ for (poll in key_pollutants) {
       legend.position = "bottom"
     )
   
-  # Display in RStudio
-  print(p)
-  
   # Also save to file
   if (save_plots_to_file) {
     ggsave(
-      filename = paste0("plots/boxplot_comparison_", poll, ".png"),
+      filename = paste("plots/boxplot_comparison_", poll, ".png"),
       plot = p,
       width = 10,
       height = 6,
       dpi = 300
     )
     cat("  Saved: plots/boxplot_comparison_", poll, ".png\n", sep = "")
+  } else {
+    # Display in RStudio (slower)
+    print(p)
+    cat("  Plot for", poll, "displayed.\n")
   }
-  
+   
   cat("  Boxplot for", poll, "completed.\n")
 }
 
@@ -409,8 +411,6 @@ p1 <- pollutant_wide %>%
   scale_color_brewer(palette = "Set1") +
   theme(legend.position = "none")
 
-print(p1)
-
 # Scatterplot: PM2.5 vs PM10
 cat("Generating scatterplot: PM2.5 vs PM10...\n")
 p2 <- pollutant_wide %>%
@@ -425,8 +425,6 @@ p2 <- pollutant_wide %>%
   ) +
   scale_color_brewer(palette = "Set1") +
   theme(legend.position = "none")
-
-print(p2)
 
 # Scatterplot: PM2.5 vs O3
 cat("Generating scatterplot: PM2.5 vs O3...\n")
@@ -443,8 +441,6 @@ p3 <- pollutant_wide %>%
   scale_color_brewer(palette = "Set1") +
   theme(legend.position = "bottom")
 
-print(p3)
-
 # Combined correlation plot
 cat("Creating combined correlation plot...\n")
 combined_plot <- (p1 / p2 / p3) +
@@ -452,7 +448,6 @@ combined_plot <- (p1 / p2 / p3) +
     title = "Pollutant Relationships for Predictive Modelling",
     subtitle = "Linear relationships with 95% confidence intervals"
   )
-print(combined_plot)
 
 # Save scatterplots to file
 if (save_plots_to_file) {
@@ -485,6 +480,19 @@ if (save_plots_to_file) {
     dpi = 300
   )
   cat("Scatterplots saved to plots/ directory\n")
+} else {
+  # Display plots in RStudio
+  print(p1)
+  cat("  PM2.5 vs NO2 plot displayed.\n")
+  
+  print(p2)
+  cat("  PM2.5 vs PM10 plot displayed.\n")
+  
+  print(p3)
+  cat("  PM2.5 vs O3 plot displayed.\n")
+  
+  print(combined_plot)
+  cat("  Combined plot displayed.\n")
 }
 
 # ------------------------------------------------------------------------------

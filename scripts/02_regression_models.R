@@ -86,42 +86,65 @@ write_csv(as.data.frame(cor_train) %>%
           "processed_data/correlation_matrix.csv")
 
 # Visualize correlation matrix
-corrplot(cor_train, method = "color", type = "upper", 
-         addCoef.col = "black", tl.col = "black")
 if (SAVE_PLOTS) {
   png("plots/correlation_matrix.png", width = 8, height = 8, units = "in", res = 300)
   corrplot(cor_train, method = "color", type = "upper", 
            addCoef.col = "black", tl.col = "black")
   dev.off()
+  cat("  Saved: plots/correlation_matrix.png\n")
+} else {
+  corrplot(cor_train, method = "color", type = "upper", 
+           addCoef.col = "black", tl.col = "black")
+  cat("  Correlation matrix displayed.\n")
 }
 
-# Scatterplots
+# Scatterplot: PM2.5 vs NO2
 p1 <- train_data %>%
   ggplot(aes(x = NO2, y = PM2.5)) +
   geom_point(alpha = 0.3) +
   geom_smooth(method = "lm", color = "red") +
   facet_wrap(~City) +
   labs(title = "PM2.5 vs NO2")
-print(p1)
-if (SAVE_PLOTS) ggsave("plots/PM25_vs_NO2.png", p1, width = 10, height = 6, dpi = 300)
 
+if (SAVE_PLOTS) {
+  ggsave("plots/PM25_vs_NO2.png", p1, width = 10, height = 6, dpi = 300)
+  cat("  Saved: plots/PM25_vs_NO2.png\n")
+} else {
+  print(p1)
+  cat("  PM2.5 vs NO2 plot displayed.\n")
+}
+
+# Scatterplot: PM2.5 vs PM10
 p2 <- train_data %>%
   ggplot(aes(x = PM10, y = PM2.5)) +
   geom_point(alpha = 0.3) +
   geom_smooth(method = "lm", color = "red") +
   facet_wrap(~City) +
   labs(title = "PM2.5 vs PM10")
-print(p2)
-if (SAVE_PLOTS) ggsave("plots/PM25_vs_PM10.png", p2, width = 10, height = 6, dpi = 300)
 
+if (SAVE_PLOTS) {
+  ggsave("plots/PM25_vs_PM10.png", p2, width = 10, height = 6, dpi = 300)
+  cat("  Saved: plots/PM25_vs_PM10.png\n")
+} else {
+  print(p2)
+  cat("  PM2.5 vs PM10 plot displayed.\n")
+}
+
+# Scatterplot: PM2.5 vs O3
 p3 <- train_data %>%
   ggplot(aes(x = O3, y = PM2.5)) +
   geom_point(alpha = 0.3) +
   geom_smooth(method = "lm", color = "red") +
   facet_wrap(~City) +
   labs(title = "PM2.5 vs O3")
-print(p3)
-if (SAVE_PLOTS) ggsave("plots/PM25_vs_O3.png", p3, width = 10, height = 6, dpi = 300)
+
+if (SAVE_PLOTS) {
+  ggsave("plots/PM25_vs_O3.png", p3, width = 10, height = 6, dpi = 300)
+  cat("  Saved: plots/PM25_vs_O3.png\n")
+} else {
+  print(p3)
+  cat("  PM2.5 vs O3 plot displayed.\n")
+}
 
 # Period comparison
 p4 <- train_data %>%
@@ -129,8 +152,14 @@ p4 <- train_data %>%
   geom_boxplot() +
   facet_wrap(~City) +
   labs(title = "Pandemic vs Post-Pandemic")
-print(p4)
-if (SAVE_PLOTS) ggsave("plots/period_comparison.png", p4, width = 10, height = 6, dpi = 300)
+
+if (SAVE_PLOTS) {
+  ggsave("plots/period_comparison.png", p4, width = 10, height = 6, dpi = 300)
+  cat("  Saved: plots/period_comparison.png\n")
+} else {
+  print(p4)
+  cat("  Period comparison plot displayed.\n")
+}
 
 # ==============================================================================
 # RQ2: SIMPLE LINEAR REGRESSION BY CITY × PERIOD (PM2.5 ~ NO2)
@@ -207,7 +236,7 @@ for (city in levels(train_data$City)) {
 }
 
 # ------------------------------------------------------------------------------
-# Save Results and Create Summary Visualizations
+# Save Results and Create Summary Visualisations
 # ------------------------------------------------------------------------------
 
 cat("\n=== SAVING RQ2 RESULTS ===\n")
@@ -220,7 +249,7 @@ cat("✓ Saved: processed_data/RQ2_city_period_summary.csv\n\n")
 cat("--- RQ2 Summary Table ---\n")
 print(rq2_results)
 
-# Slope Comparison
+# Visualisation Slope Comparison 
 if (nrow(rq2_results) > 0) {
   p_slopes <- rq2_results %>%
     ggplot(aes(x = City, y = Slope_NO2, fill = Period)) +
@@ -242,11 +271,13 @@ if (nrow(rq2_results) > 0) {
       legend.position = "bottom"
     )
   
-  print(p_slopes)
   if (SAVE_PLOTS) {
     ggsave("plots/RQ2_slope_comparison.png", p_slopes, 
            width = 10, height = 6, dpi = 300)
     cat("✓ Saved: plots/RQ2_slope_comparison.png\n")
+  } else {
+    print(p_slopes)
+    cat("  RQ2 slope comparison plot displayed.\n")
   }
   
   # R² Comparison
@@ -271,11 +302,13 @@ if (nrow(rq2_results) > 0) {
       legend.position = "bottom"
     )
   
-  print(p_r2)
   if (SAVE_PLOTS) {
     ggsave("plots/RQ2_r2_comparison.png", p_r2, 
            width = 10, height = 6, dpi = 300)
     cat("✓ Saved: plots/RQ2_r2_comparison.png\n")
+  } else {
+    print(p_r2)
+    cat("  RQ2 R² comparison plot displayed.\n")
   }
 }
 
@@ -375,7 +408,7 @@ for (city in levels(train_data$City)) {
 }
 
 # ------------------------------------------------------------------------------
-# Save Results and Create Summary Visualizations
+# Save Results and Create Summary Visualisations
 # ------------------------------------------------------------------------------
 
 cat("\n=== SAVING RQ3 RESULTS ===\n")
@@ -388,7 +421,7 @@ cat("✓ Saved: processed_data/RQ3_city_period_summary.csv\n\n")
 cat("--- RQ3 Summary Table ---\n")
 print(rq3_results)
 
-# Summary visualizations
+# Summary visualisations
 if (nrow(rq3_results) > 0) {
   
   # R² comparison
@@ -413,11 +446,13 @@ if (nrow(rq3_results) > 0) {
       legend.position = "bottom"
     )
   
-  print(p_r2_rq3)
   if (SAVE_PLOTS) {
     ggsave("plots/RQ3_r2_comparison.png", p_r2_rq3, 
            width = 10, height = 6, dpi = 300)
     cat("✓ Saved: plots/RQ3_r2_comparison.png\n")
+  } else {
+    print(p_r2_rq3)
+    cat("  RQ3 R² comparison plot displayed.\n")
   }
   
   # VIF summary (check multicollinearity)
@@ -449,16 +484,22 @@ if (nrow(rq3_results) > 0) {
       strip.background = element_rect(fill = "gray95", color = NA)
     )
   
-  print(p_vif)
   if (SAVE_PLOTS) {
     ggsave("plots/RQ3_vif_summary.png", p_vif, 
            width = 12, height = 6, dpi = 300)
     cat("✓ Saved: plots/RQ3_vif_summary.png\n")
+  } else {
+    print(p_vif)
+    cat("  RQ3 VIF summary plot displayed.\n")
   }
   
-  print(p_coef)
   if (SAVE_PLOTS) {
+    ggsave("plots/RQ3_coefficient_comparison.png", p_coef, 
+           width = 12, height = 8, dpi = 300)
     cat("✓ Saved: plots/RQ3_coefficient_comparison.png\n")
+  } else {
+    print(p_coef)
+    cat("  RQ3 coefficient comparison plot displayed.\n")
   }
 }
 
@@ -493,7 +534,7 @@ print(comparison)
 write_csv(comparison, "processed_data/RQ2_vs_RQ3_comparison.csv")
 cat("\n✓ Saved: processed_data/RQ2_vs_RQ3_comparison.csv\n")
 
-# Visualization: R² improvement
+# Visualisation: R² improvement
 p_comparison_r2 <- comparison %>%
   select(City, Period, RQ2 = RQ2_Test_R2, RQ3 = RQ3_Test_R2) %>%
   pivot_longer(cols = c(RQ2, RQ3), names_to = "Model", values_to = "Test_R2") %>%
@@ -512,11 +553,16 @@ p_comparison_r2 <- comparison %>%
   theme_minimal() +
   theme(legend.position = "bottom")
 
-print(p_comparison_r2)
-if (SAVE_PLOTS) ggsave("plots/RQ2_vs_RQ3_comparison_R2.png", p_comparison_r2, 
-                       width = 12, height = 6, dpi = 300)
+if (SAVE_PLOTS) {
+  ggsave("plots/RQ2_vs_RQ3_comparison_R2.png", p_comparison_r2, 
+         width = 12, height = 6, dpi = 300)
+  cat("✓ Saved: plots/RQ2_vs_RQ3_comparison_R2.png\n")
+} else {
+  print(p_comparison_r2)
+  cat("  R² comparison plot displayed.\n")
+}
 
-# Visualization: RMSE improvement
+# Visualisation: RMSE improvement
 p_comparison_rmse <- comparison %>%
   select(City, Period, RQ2 = RQ2_Test_RMSE, RQ3 = RQ3_Test_RMSE) %>%
   pivot_longer(cols = c(RQ2, RQ3), names_to = "Model", values_to = "Test_RMSE") %>%
@@ -535,9 +581,14 @@ p_comparison_rmse <- comparison %>%
   theme_minimal() +
   theme(legend.position = "bottom")
 
-print(p_comparison_rmse)
-if (SAVE_PLOTS) ggsave("plots/RQ2_vs_RQ3_comparison_RMSE.png", p_comparison_rmse,
-                       width = 12, height = 6, dpi = 300)
+if (SAVE_PLOTS) {
+  ggsave("plots/RQ2_vs_RQ3_comparison_RMSE.png", p_comparison_rmse,
+         width = 12, height = 6, dpi = 300)
+  cat("✓ Saved: plots/RQ2_vs_RQ3_comparison_RMSE.png\n")
+} else {
+  print(p_comparison_rmse)
+  cat("  RMSE comparison plot displayed.\n")
+}
 
 # Summary statistics
 cat("\n=== Summary: Model Improvement ===\n")
