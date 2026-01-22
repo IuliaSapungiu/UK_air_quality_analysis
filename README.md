@@ -32,7 +32,7 @@ Do additional pollutants (PM₁₀ and O₃) improve prediction of PM₂.₅ bey
 
 ### Installation and usage
 #### Step 1: Setup
-1. Clone or download this repository
+1. Clone or download this repository (make sure to delete plots and processed_data folders so that you create them when running the code)
 2. Open R or RStudio and set your working directory to the project folder ```air_quality_analysis```
 3. Install required packages (if not already installed):
 
