@@ -34,10 +34,16 @@ Do additional pollutants (PM₁₀ and O₃) improve prediction of PM₂.₅ bey
 #### Step 1: Setup
 1. Clone or download this repository _(make sure to delete plots and processed_data folders so that you create them when running the code)_
 2. Open R or RStudio and set your working directory to the project folder ```air_quality_analysis```
-3. Install required packages (if not already installed):
+3. Install required packages (if not already installed) and load them one by one:
 
    ```
     install.packages(c("tidyverse", "lubridate", "ggplot2", "patchwork", "corrplot"))
+   
+    library(tidyverse)    
+    library(lubridate)    
+    library(ggplot2)      
+    library(patchwork)
+    library(corrplot)
    ```
 
 4. Configuration option (Saving behaviour - code line 27)
