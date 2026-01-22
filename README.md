@@ -33,8 +33,9 @@ Do additional pollutants (PM₁₀ and O₃) improve prediction of PM₂.₅ bey
 ### Installation and usage
 #### Step 1: Setup
 1. Clone or download this repository _(make sure to delete plots and processed_data folders so that you create them when running the code)_
-2. Open R or RStudio and set your working directory to the project folder ```air_quality_analysis```
-3. Install required packages (if not already installed) and load them one by one:
+2. Place your data file ```uk_air_quality_data.csv``` in the project root directory
+3. Open R or RStudio and set your working directory to the project folder ```air_quality_analysis```
+4. Install required packages (if not already installed) and load them one by one:
 
    ```
     install.packages(c("tidyverse", "lubridate", "ggplot2", "patchwork", "corrplot"))
@@ -46,15 +47,19 @@ Do additional pollutants (PM₁₀ and O₃) improve prediction of PM₂.₅ bey
     library(corrplot)
    ```
 
-4. Configuration option (Saving behaviour - code line 27)
+5. Configuration option (Saving behaviour - code line 27)
 
    ```
     save_plots_to_file <- TRUE  # Set to FALSE to display plots in RStudio only
    ```
    - TRUE: Plots are saved to plots/ folder (faster, recommended)
    - FALSE: Plots are displayed in RStudio viewer (slower, for interactive viewing)
+  
+   Also, a Random Seed ```set.seed(123)``` is used in the analysis for:
+    - Consistent train/test splits
+    - Reproducible results across runs
 
-#### Step 2: Run EDA (Research Question 1)
+#### Step 2: Run EDA by step-level documentation block (Research Question 1)
 
    ```
     source("01_EDA_analysis.R")
@@ -68,7 +73,7 @@ Do additional pollutants (PM₁₀ and O₃) improve prediction of PM₂.₅ bey
   - Saves processed datasets to processed_data/ folder
   - Saves all plots to plots/ folder
 
-#### Step 3: Run Regression Models (Research Questions 2 & 3)
+#### Step 3: Run Regression Models by step-level documentation block (Research Questions 2 & 3)
 After completing Step 2, run the regression analysis:
 
    ```
