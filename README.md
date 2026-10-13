@@ -5,6 +5,7 @@
 ## Table of contents
  - [Project Overview](#project-overview)
  - [Research Questions](#research-questions)
+ - [Key Findings](#key-findings)
  - [Technologies](#technologies)
  - [Installation and usage](#installation-and-usage)
  - [Project Structure](#project-structure)
@@ -25,6 +26,20 @@ How did daily concentrations of PM₂.₅, PM₁₀, NO₂, and O₃ vary across
 How well does NO₂ alone explain variation in daily PM₂.₅ concentrations across the selected UK cities, stratified by city and period?
 - RQ3 (Multiple Linear Regression)
 Do additional pollutants (PM₁₀ and O₃) improve prediction of PM₂.₅ beyond NO₂ alone, stratified by city and period?
+
+### Key Findings
+**RQ1:** Improvements were mixed and short-lived. NO₂ fell during early lockdown, especially in London, but rebounded afterwards, while Manchester showed almost no change. PM₂.₅ and PM₁₀ varied inconsistently, with no lasting reduction. O₃ increased in the post-pandemic period, mostly in Manchester and Sheffield, likely driven by atmospheric chemistry, while Edinburgh had generally higher O₃ levels throughout.
+
+![Correlation matrix of pollutants](plots/correlation_matrix.png)
+All other plots are in the plots/ folder.
+
+**RQ2:** NO₂ explains PM₂.₅ variation in traffic-dominated cities (London, Manchester, Sheffield) but performs poorly in Edinburgh, where PM₂.₅ is more influenced by regional transport and non-traffic sources. The relationship was strongest in the post-pandemic period.
+
+**RQ3:** Yes. Models using all pollutants explained PM₂.₅ better than NO₂ alone in both periods, suggesting urban PM₂.₅ comes from diverse emissions and atmospheric effects.
+
+#### Takeaway
+
+Lockdown-era air quality gains were not sustained, and PM₂.₅ is best estimated from several pollutants rather than from NO₂ alone.
 
 ### Technologies
 - R version 4.0.0 or higher
