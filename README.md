@@ -4,6 +4,7 @@
 
 ## Table of contents
  - [Project Overview](#project-overview)
+ - [Glossary: the pollutants](#glossary-the-pollutants)
  - [Research Questions](#research-questions)
  - [Key Findings](#key-findings)
  - [Technologies](#technologies)
@@ -18,6 +19,17 @@ The analysis uses data from UK Data Selector - Air urban background monitoring s
 **MOTIVATION**
 
 COVID-19 lockdowns sharply reduced traffic and activity, giving a rare chance to see how urban air quality responded. This project compares pollutant levels during the pandemic (2020-21) and the recovery (2022-24) in four UK cities, and tests whether NO₂, a traffic-related pollutant, can help estimate PM₂.₅.
+
+### Glossary: the pollutants
+
+| Pollutant | What it is | Main sources | Why it matters |
+|---|---|---|---|
+| **PM₂.₅** | Particulate matter: tiny airborne particles up to 2.5 micrometres across (about 30 times thinner than a human hair) | Vehicle exhaust, burning of fuels and wood, industry; also forms from other pollutants in the air | Small enough to reach deep into the lungs and bloodstream, so it is among the most harmful pollutants to health |
+| **PM₁₀** | Larger airborne particles up to 10 micrometres across (this size range includes PM₂.₅) | Road and construction dust, brake and tyre wear, vehicle exhaust | Can irritate the eyes, nose, throat and lungs |
+| **NO₂** | Nitrogen dioxide, a gas | Mainly burning fuel in vehicle engines (especially diesel), and also heating and power generation | Can inflame the airways; widely used as an indicator of traffic pollution |
+| **O₃** | Ozone. At ground level it is a pollutant (not the protective ozone layer high in the atmosphere) | Not emitted directly: it forms when sunlight reacts with other pollutants such as nitrogen oxides | Can cause breathing problems; tends to be higher in sunny weather |
+
+Concentrations are typically measured in micrograms per cubic metre (µg/m³).
 
 ### Research Questions
 - RQ1 (Exploratory Data Analysis)
