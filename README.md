@@ -31,7 +31,7 @@ Do additional pollutants (PM₁₀ and O₃) improve prediction of PM₂.₅ bey
 **RQ1:** Improvements were mixed and short-lived. NO₂ fell during early lockdown, especially in London, but rebounded afterwards, while Manchester showed almost no change. PM₂.₅ and PM₁₀ varied inconsistently, with no lasting reduction. O₃ increased in the post-pandemic period, mostly in Manchester and Sheffield, likely driven by atmospheric chemistry, while Edinburgh had generally higher O₃ levels throughout.
 
 ![Correlation matrix of pollutants](plots/correlation_matrix.png)
-All other plots are in the plots/ folder.
+###### All other plots are in the plots/ folder.
 
 **RQ2:** NO₂ explains PM₂.₅ variation in traffic-dominated cities (London, Manchester, Sheffield) but performs poorly in Edinburgh, where PM₂.₅ is more influenced by regional transport and non-traffic sources. The relationship was strongest in the post-pandemic period.
 
