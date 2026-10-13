@@ -11,8 +11,12 @@
 
 
 ### Project Overview
-This project analyzes how air pollutant concentrations (PM₂.₅, PM₁₀, NO₂, and O₃) varied across four major UK cities (Edinburgh, London, Manchester, Sheffield) during the pandemic period (2020-2021) and post-pandemic recovery (2022-2024). 
+This project analyses how air pollutant concentrations (PM₂.₅, PM₁₀, NO₂, and O₃) varied across four major UK cities (Edinburgh, London, Manchester, Sheffield) during the pandemic period (2020-2021) and post-pandemic recovery (2022-2024). 
 The analysis uses data from UK Data Selector - Air urban background monitoring stations to examine temporal and spatial patterns, and develops predictive models to understand relationships between pollutants.
+
+**MOTIVATION**
+
+COVID-19 lockdowns sharply reduced traffic and activity, giving a rare chance to see how urban air quality responded. This project compares pollutant levels during the pandemic (2020-21) and the recovery (2022-24) in four UK cities, and tests whether NO₂, a traffic-related pollutant, can help estimate PM₂.₅.
 
 ### Research Questions
 - RQ1 (Exploratory Data Analysis)
